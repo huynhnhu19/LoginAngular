@@ -10,8 +10,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   user: IUserLogin = {
-    username: null,
-    password: null
+    username: 'admin',
+    password: 'admin'
   };
 
   constructor() { }
