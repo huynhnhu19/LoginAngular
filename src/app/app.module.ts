@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule, Routes } from '@angular/router';
-import { NgxNavbarModule} from 'ngx-bootstrap-navbar'
+import { NgxNavbarModule} from 'ngx-bootstrap-navbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,13 +13,10 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
+import { MenubarComponent } from './menubar/menubar.component';
 
-const appRoutes: Routes =[
-  { path: '', component: LoginComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'about', component: AboutComponent},
-  { path: 'contact', component: ContactComponent},
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +24,7 @@ const appRoutes: Routes =[
     HomeComponent,
     AboutComponent,
     ContactComponent,
+    MenubarComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,12 +34,8 @@ const appRoutes: Routes =[
     MatToolbarModule,
     BrowserAnimationsModule,
     NgxNavbarModule,
-    RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: true}
-    )
   ],
-  providers: [],
+  providers: [ AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

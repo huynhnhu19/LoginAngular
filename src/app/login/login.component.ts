@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IUserLogin } from './user-login';
 import { FormsModule, NgForm } from '@angular/forms';
+import { User } from './user';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +10,21 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  user: IUserLogin = {
+  user: User = {
     username: 'admin',
     password: 'admin'
   };
-
-  constructor() { }
+  form: NgForm;
+  private formSubmit: boolean;
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form.value);
+  onSubmit() {
+    this.authService.login(this.user);
   }
 
 }

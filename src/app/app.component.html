@@ -18,30 +18,9 @@
     </div>
     <button class="btn btn-info">Log out</button>
 </nav> -->
-<div>
-    <nav ngxNavbar class="navbar navbar-expand-lg navbar-light">
-        <button class="navbar-toggler" type="button" (click)="collapse.toggle()">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <h2>TenApp</h2>
-        <ngx-navbar-collapse #collapse="ngxNavbarCollapse" class="collapse navbar-collapse">
-            <ul class="navbar-nav">
-                <li>
-                    <a class="nav-link" routerLink="home">Home</a>
-                </li>
-                <li>
-                    <a class="nav-link" routerLink="about">About</a>
-                </li>
-                <li>
-                    <a class="nav-link" routerLink="contact">Contact</a>
-                </li>
-                <li>
-                    <a class="nav-link">Logout</a>
-                </li>
-                
-            </ul>
-        </ngx-navbar-collapse>
-    </nav>
-</div>
+<!-- <div *ngIf="isLoggedIn$"> -->
+    
+<!-- </div> -->
+<app-menubar></app-menubar>
 <router-outlet></router-outlet>
 <!-- <app-login></app-login> -->
