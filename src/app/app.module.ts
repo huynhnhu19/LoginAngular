@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule, Routes } from '@angular/router';
 import { NgxNavbarModule} from 'ngx-bootstrap-navbar';
 
 import { AppRoutingModule } from './app-routing.module';
