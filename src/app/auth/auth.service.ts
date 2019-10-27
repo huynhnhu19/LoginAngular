@@ -10,7 +10,6 @@ export class AuthService {
     // minutes = 20;
     // currentTime = new Date().getMinutes();
     // timeSetup = localStorage.getItem('currentTime');
-    loggedIn = localStorage.getItem('logged');
     constructor(
         private router: Router
     ) { }
@@ -19,9 +18,7 @@ export class AuthService {
         if (user.username === 'admin' && user.password === 'admin') {
             this.logged.next(true);
             localStorage.setItem('user', user.username);
-            if(this.loggedIn ==null){
-                localStorage.setItem('logged', 'true');
-            }
+            localStorage.setItem('logged', 'true');
             this.router.navigate(['home']);
             // if( this.timeSetup ==null){
             //     localStorage.setItem('timeSetup', this.currentTime);
@@ -34,13 +31,21 @@ export class AuthService {
         } else {
             window.alert('Wrong username or password');
             localStorage.setItem('user', null);
+            localStorage.setItem('logged', 'false');
         }
     }
-
-    get isLoggedIn() {
-        return this.logged.asObservable();
+    isLoggedIn(): boolean {
+        // const loggedIn = localStorage.getItem('logged');
+        // return this.logged.asObservable();
+        // return console.log(loggedIn);
+        let status = false;
+        if (localStorage.getItem('logged') === 'true') {
+            status = true;
+        } else {
+            status = false;
+        }
+        return status;
     }
-
     logout() {
         this.logged.next(false);
         localStorage.clear();

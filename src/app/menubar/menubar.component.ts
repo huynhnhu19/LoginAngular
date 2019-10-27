@@ -8,13 +8,13 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./menubar.component.scss']
 })
 export class MenubarComponent implements OnInit {
-  isLoggedInn: Observable<boolean>;
+  isLoggedInn: boolean;
   constructor(
     private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.isLoggedInn = this.authService.isLoggedIn;
+    this.isLoggedInn = this.authService.isLoggedIn();
   }
   onLogout() {
     this.authService.logout();
