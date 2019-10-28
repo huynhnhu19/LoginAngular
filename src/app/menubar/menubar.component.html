@@ -5,7 +5,7 @@
         </button>
         <h2>TenApp</h2>
         <ngx-navbar-collapse #collapse="ngxNavbarCollapse" class="collapse navbar-collapse">
-            <ul class="navbar-nav" *ngIf="isLoggedIn">
+            <ul class="navbar-nav" *ngIf="authService.isLoggedIn()==true">
                 <li>
                     <a class="nav-link" routerLink="home">Home</a>
                 </li>
