@@ -7,9 +7,9 @@ import { stringify, parse } from 'querystring';
 @Injectable()
 export class AuthService {
     private logged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    firstTime = new Date().getMinutes().toString();
-    setupTime = (parseInt(this.firstTime) + 2).toString();
-    currentTime = new Date().getMinutes();
+    firstTime = new Date().getMinutes();
+    setupTime = new Date().setMinutes(this.firstTime + 2).toString();
+    currentTime = new Date().valueOf();
     constructor(
         private router: Router
     ) { }
@@ -20,7 +20,7 @@ export class AuthService {
             localStorage.setItem('user', user.username);
             localStorage.setItem('logged', 'true');
             this.router.navigate(['home']);
-            localStorage.setItem('firstTime', this.firstTime);
+            localStorage.setItem('firstTime', this.firstTime.toString());
             localStorage.setItem('setupTime', this.setupTime);
         } else {
             window.alert('Wrong username or password');
@@ -39,7 +39,7 @@ export class AuthService {
             console.log(setup);
             if ( this.currentTime > parseInt(setup)) {
                 localStorage.clear();
-                window.alert("Time out");
+                window.alert("Login to continue");
             }
         } else {
             status = false;
