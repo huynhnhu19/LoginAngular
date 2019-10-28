@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AuthGuard } from './auth/auth.guard';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard]},
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard]},
-  { path: '**', redirectTo: ''}
+  { path: '**', component: NotfoundComponent}
 ];
 
 @NgModule({

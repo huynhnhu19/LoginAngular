@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { User } from '../login/user';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { stringify } from 'querystring';
+import { stringify, parse } from 'querystring';
 
 @Injectable()
 export class AuthService {
     private logged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    minutes = 20;
+    firstTime = new Date().getMinutes().toString();
+    setupTime = (parseInt(this.firstTime) + 2).toString();
     currentTime = new Date().getMinutes();
-    timeSetup = localStorage.getItem('currentTime');
     constructor(
         private router: Router
     ) { }
@@ -20,18 +20,8 @@ export class AuthService {
             localStorage.setItem('user', user.username);
             localStorage.setItem('logged', 'true');
             this.router.navigate(['home']);
-            // if (this.timeSetup == null) {
-            //     localStorage.setItem('timeSetup', this.currentTime.toString());
-            //     this.router.navigate(['home']);
-            // } else if (this.currentTime-this.timeSetup > 1000) {
-            //     localStorage.clear();
-            //     this.logged.next(false);
-            //     this.router.navigate(['login']);
-            // }
-            setTimeout(() => {
-                localStorage.clear();
-                this.router.navigate(['login']);
-            }, 10000);
+            localStorage.setItem('firstTime', this.firstTime);
+            localStorage.setItem('setupTime', this.setupTime);
         } else {
             window.alert('Wrong username or password');
             localStorage.setItem('user', null);
@@ -39,12 +29,18 @@ export class AuthService {
         }
     }
     isLoggedIn(): boolean {
-        // const loggedIn = localStorage.getItem('logged');
-        // return this.logged.asObservable();
-        // return console.log(loggedIn);
         let status = false;
         if (localStorage.getItem('logged') === 'true') {
             status = true;
+            const first = localStorage.getItem('firstTime');
+            const setup = localStorage.getItem('setupTime');
+            console.log(first);
+            console.log(this.currentTime);
+            console.log(setup);
+            if ( this.currentTime > parseInt(setup)) {
+                localStorage.clear();
+                window.alert("Time out");
+            }
         } else {
             status = false;
         }

@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { MenubarComponent } from './menubar/menubar.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MenubarComponent } from './menubar/menubar.component';
     AboutComponent,
     ContactComponent,
     MenubarComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
