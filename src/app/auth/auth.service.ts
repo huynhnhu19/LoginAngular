@@ -34,9 +34,6 @@ export class AuthService {
             status = true;
             const first = localStorage.getItem('firstTime');
             const setup = localStorage.getItem('setupTime');
-            console.log(first);
-            console.log(this.currentTime);
-            console.log(setup);
             if ( this.currentTime > parseInt(setup)) {
                 localStorage.clear();
                 window.alert("Login to continue");
