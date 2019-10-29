@@ -32,7 +32,6 @@ export class AuthService {
         let status = false;
         if (localStorage.getItem('logged') === 'true') {
             status = true;
-            const first = localStorage.getItem('firstTime');
             const setup = localStorage.getItem('setupTime');
             if ( this.currentTime > parseInt(setup)) {
                 localStorage.clear();
